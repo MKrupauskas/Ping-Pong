@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Ping Pong</title>
+    <meta name="description" content="Games made only with vanilla HTML JS and CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+    var paddleAIY = paddlePlayerY = 40;
+    var paddleWidth = 10, paddleHeight = 100;
+    var ballX = ballY = 50;
+    var ballSize = 5;
+    var velocityX = velocityY = 5;
+
+
+      window.onload = function () {
+        canvas = document.getElementById("canvas");
+        canvasContext = canvas.getContext("2d");
+
+        setInterval(update, 1000/30);
+      }
+      function update () {
+        canvasContext.fillStyle = "black";
+        canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+
+        canvasContext.fillStyle = "white";
+        canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
+        canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
+        canvasContext.fillRect(ballX, ballY, ballSize);
+
+
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="640" height="480"></canvas>
+  </body>
+</html>
