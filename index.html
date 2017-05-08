@@ -11,23 +11,78 @@
     var ballX = ballY = 50;
     var ballSize = 5;
     var velocityX = velocityY = 5;
-
+    var scoreAI = scorePlayer = 0;
+    var deltaY;
+    var speedAI = 3;
 
       window.onload = function () {
         canvas = document.getElementById("canvas");
         canvasContext = canvas.getContext("2d");
 
         setInterval(update, 1000/30);
+
+        canvas.addEventListener("mousemove", funtion (coord) {
+          paddlePlayerY = coord.clientY - paddleHeight / 2;
+        });
       }
+
       function update () {
+        if (paddleAIY + paddleHeight / 2 < ballY) {
+          paddleAIY += speedAI;
+        } else {
+          paddleAIY -= speedAI;
+        }
+
         canvasContext.fillStyle = "black";
         canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
         canvasContext.fillStyle = "white";
         canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
         canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
-        canvasContext.fillRect(ballX, ballY, ballSize);
+        canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
+        canvasContext.fillText(scorePlayer, 100, 100);
+        canvasContext.fillText(scoreAI, canvas.width - 100, 100);
 
+
+        ballX += velocityX;
+        ballY += velocityY;
+
+        if (ballY < 0 && velocityY < 0) {
+          velocityY = -velocityY;
+        }
+        if (ballY > canvas.height && velocityY > 0) {
+          velocityY = -velocityY;
+        }
+        if (ballX < 0) {
+          if (ballY > paddlePlayerY && ballY < paddlePlayerY + paddleHeight) {
+            velocityX = -velocityX;
+            deltaY = ballY - (paddlePlayerY + paddleHeight) / 2;
+            velocityY = deltaY * 0.3;
+          } else {
+            ScoreAI++;
+            reset();
+          }
+        }
+      if (ballX > canvas.width) {
+        if (ballY > paddleAIY && ballY < paddleAIY + paddleHeight) {
+          velocityX = -velocityX;
+          deltaY = ballY - (paddleAIY + paddleHeight) / 2;
+          velocityY = deltaY * 0.3;
+        } else {
+          scorePlayer++;
+          reset();
+          }
+        }
+      }
+
+
+
+
+      function reset () {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        velocityX = -velocityX;
+        velocityY = 3;
 
       }
     </script>
