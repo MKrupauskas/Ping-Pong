@@ -28,6 +28,9 @@
       }
 
       function update () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         if (paddleAIY + paddleHeight / 2 < ballY) {
           paddleAIY += speedAI;
         } else {
