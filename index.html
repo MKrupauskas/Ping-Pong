@@ -41,6 +41,7 @@
         canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
         canvasContext.fillStyle = "white";
+        canvasContext.font="20px Georgia";
         canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
         canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
         canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
