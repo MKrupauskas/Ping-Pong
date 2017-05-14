@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>body { margin: 0; padding: 0;}</style>
     <script>
+    var seconds= 0, minutes = 0, time = "00:00", tempTime;
     var paddleAIY = paddlePlayerY = 40;
     var paddleWidth = 10, paddleHeight = 100;
     var ballX = 320;
@@ -21,12 +22,36 @@
         canvasContext = canvas.getContext("2d");
 
         setInterval(update, 1000/30);
+        setInterval(timer, 1000);
 
         canvas.addEventListener("mousemove", function (a) {
             paddlePlayerY = a.clientY - paddleHeight / 2;
         });
       }
-
+      
+      function timer () {
+          seconds++;
+          if (seconds == 60) {
+              seconds = 0;
+              minutes++;
+          }
+          if (seconds < 10) {
+              tempTime = "0" + seconds;
+              if (minutes < 10) {
+                  time = "0" + minutes + ":" + tempTime;
+              } else {
+                  time = minutes + ":" + tempTime;
+              }
+          } else {
+              tempTime = seconds;
+              if (minutes < 10) {
+                  time = "0" + minutes + ":" + tempTime;
+              } else {
+                  time = minutes + ":" + tempTime;
+            }
+        }
+      }
+        
       function update () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -47,6 +72,7 @@
         canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
         canvasContext.fillText(scorePlayer, 100, 100);
         canvasContext.fillText(scoreAI, canvas.width - 100, 100);
+        canvasContext.fillText(time, canvas.width / 2 - 35, 60);
 
 
         ballX += velocityX;
