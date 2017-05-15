@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>body { margin: 0; padding: 0;}</style>
     <script>
-    var seconds= 0, minutes = 0, time = "00:00", tempTime;
+    var seconds = 0, minutes = 0, time = "00:00", tempTime;
     var paddleAIY = paddlePlayerY = 40;
     var paddleWidth = 10, paddleHeight = 100;
     var ballX = 320;
@@ -25,8 +25,8 @@
         setInterval(update, 1000/30);
         setInterval(tickTimer, 1000);
 
-        canvas.addEventListener("mousemove", function (a) {
-            paddlePlayerY = a.clientY - paddleHeight / 2;
+        canvas.addEventListener("mousemove", function (placeHolder) {
+            paddlePlayerY = placeHolder.clientY - paddleHeight / 2;
         });
       }
       
