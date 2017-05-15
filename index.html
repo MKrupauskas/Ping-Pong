@@ -100,7 +100,6 @@
           if (ballY > paddlePlayerY && ballY < paddlePlayerY + paddleHeight) {
             velocityX = -velocityX;
             deltaY = ballY - (paddlePlayerY + paddleHeight) / 2;
-            velocityY = dy * 0.3;
           } else {
             scoreAI++;
             reset();
@@ -110,7 +109,6 @@
         if (ballY > paddleAIY && ballY < paddleAIY + paddleHeight) {
           velocityX = -velocityX;
           deltaY = ballY - (paddleAIY + paddleHeight) / 2;
-          velocityY = dy * 0.3;
         } else {
           scorePlayer++;
           reset();
