@@ -14,8 +14,9 @@
     var ballY = 240;
     var ballSize = 5;
     var velocityX = velocityY = 5;
+    var velocityIncrement = 0.35;
     var scoreAI = scorePlayer = 0;
-    var speedAI = 3;
+    var speedAI = 4;
 
       window.onload = function () {
         canvas = document.getElementById("canvas");
@@ -31,6 +32,8 @@
       
       function timer () {
           seconds++;
+          // speedAI += velocityIncrement;
+          // velocityX = velocityY += 0.02;
           if (seconds == 60) {
               seconds = 0;
               minutes++;
@@ -49,7 +52,18 @@
               } else {
                   time = minutes + ":" + tempTime;
             }
-        }
+          }
+          if (velocityX < 0) {
+              velocityX += -velocityIncrement;
+          } else {
+              velocityX += velocityIncrement;
+          }
+          if (velocityY < 0) {
+              velocityY += -velocityIncrement;
+          } else {
+              velocityY += velocityIncrement;
+          }
+          speedAI += velocityIncrement - 0.04;
       }
         
       function update () {
@@ -109,8 +123,13 @@
       function reset () {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
-        velocityX = -velocityX;
+        if (velocityX < 0) {
+            velocityX = 8;
+        } else {
+            velocityX = -8;
+        }
         velocityY = 3;
+        speedAI = 3;
       }
     </script>
   </head>
