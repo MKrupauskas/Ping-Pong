@@ -23,14 +23,14 @@
         canvasContext = canvas.getContext("2d");
 
         setInterval(update, 1000/30);
-        setInterval(timer, 1000);
+        setInterval(tickTimer, 1000);
 
         canvas.addEventListener("mousemove", function (a) {
             paddlePlayerY = a.clientY - paddleHeight / 2;
         });
       }
       
-      function timer () {
+      function tickTimer () {
           seconds++;
           if (seconds == 60) {
               seconds = 0;
