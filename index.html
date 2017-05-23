@@ -22,15 +22,15 @@ window.onload = function() {
   canvas = document.getElementById("canvas");
   canvasContext = canvas.getContext("2d");
 
+  velocityX = (velocityY = canvas.width / 200);
+
   setInterval(update, 1000 / 30);
   setInterval(tickTimer, 1000);
 
   canvas.addEventListener("mousemove", function(input) {
-    paddlePlayerY = input.clientY - paddleHeight / 2;
+  paddlePlayerY = input.clientY - paddleHeight / 2;
   });
 };
-
-velocityX = (velocityY = canvas.width / 200);
 
 function tickTimer() {
   seconds++;
