@@ -82,18 +82,8 @@ function update() {
   canvasContext.fillStyle = "white";
   canvasContext.font = "30px Verdana";
   canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
-  canvasContext.fillRect(
-    canvas.width - paddleWidth,
-    paddleAIY,
-    paddleWidth,
-    paddleHeight
-  );
-  canvasContext.fillRect(
-    ballX - ballSize / 2,
-    ballY - ballSize / 2,
-    ballSize,
-    ballSize
-  );
+  canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
+  canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
   canvasContext.fillText(scorePlayer, 100, 100);
   canvasContext.fillText(scoreAI, canvas.width - 100, 100);
   canvasContext.fillText(time, canvas.width / 2 - 35, 60);
