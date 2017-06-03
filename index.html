@@ -122,12 +122,14 @@ function reset() {
   ballX = canvas.width / 2;
   ballY = canvas.height / 2;
   if (velocityX < 0) {
-    velocityX = 8;
+    velocityX = canvas.width / 100);
   } else {
-    velocityX = -8;
+    velocityX = -canvas.width / 100);
   }
   velocityY = 3;
   speedAI = 3;
+  
+  velocityIncrement = canvas.width / 2800;
 }
 
     </script>
