@@ -14,7 +14,7 @@ let ballX = 320;
 let ballY = 240;
 const ballSize = 5;
 let velocityX = (velocityY = 0);
-const velocityIncrement = 0.35;
+let velocityIncrement = 0;
 let scoreAI = (scorePlayer = 0);
 let speedAI = 4;
 
@@ -23,6 +23,7 @@ window.onload = function() {
   canvasContext = canvas.getContext("2d");
 
   velocityX = (velocityY = canvas.width / 200);
+  velocityIncrement = canvas.width / 2800;
 
   setInterval(update, 1000 / 30);
   setInterval(tickTimer, 1000);
