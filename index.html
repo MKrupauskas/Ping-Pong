@@ -19,8 +19,8 @@ let scoreAI = (scorePlayer = 0);
 let speedAI = 4;
 
 window.onload = function() {
-  canvas = document.getElementById("canvas");
-  canvasContext = canvas.getContext("2d");
+  canvas = document.getElementById('canvas');
+  canvasContext = canvas.getContext('2d');
 
   velocityX = (velocityY = canvas.width / 200);
   velocityIncrement = canvas.width / 2800;
@@ -28,7 +28,7 @@ window.onload = function() {
   setInterval(update, 1000 / 30);
   setInterval(tickTimer, 1000);
 
-  canvas.addEventListener("mousemove", function(input) {
+  canvas.addEventListener('mousemove', function(input) {
   paddlePlayerY = input.clientY - paddleHeight / 2;
   });
 };
@@ -40,16 +40,16 @@ function tickTimer() {
     minutes++;
   }
   if (seconds < 10) {
-    tempTime = "0" + seconds;
+    tempTime = '0' + seconds;
     if (minutes < 10) {
-      time = "0" + minutes + ":" + tempTime;
+      time = '0' + minutes + ':' + tempTime;
     } else {
-      time = minutes + ":" + tempTime;
+      time = minutes + ':' + tempTime;
     }
   } else {
     tempTime = seconds;
     if (minutes < 10) {
-      time = "0" + minutes + ":" + tempTime;
+      time = '0' + minutes + ':' + tempTime;
     } else {
       time = minutes + ":" + tempTime;
     }
@@ -77,11 +77,11 @@ function update() {
     paddleAIY -= speedAI;
   }
 
-  canvasContext.fillStyle = "black";
+  canvasContext.fillStyle = 'black';
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
-  canvasContext.fillStyle = "white";
-  canvasContext.font = "30px Verdana";
+  canvasContext.fillStyle = 'white';
+  canvasContext.font = '30px Verdana';
   canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
   canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
   canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
