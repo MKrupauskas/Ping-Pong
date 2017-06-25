@@ -1,4 +1,5 @@
-# Ping Pong
-* Made with HTML5 and JavaScript
+# Ping Pong [*Live version*](https://mkrupauskas.github.io/Ping-Pong/)
+* Made only with HTML5 and JavaScript
 * Made as a challenge to create pong in HTML5
-### [Live version](https://mkrupauskas.github.io/Ping-Pong/)
+* Try to beat my highscore of :three: :sweat_smile:
+
