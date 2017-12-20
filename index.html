@@ -1,140 +1,152 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Ping Pong</title>
-    <meta name="description" content="Game made only with vanilla HTML JS and CSS">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>body { margin: 0; padding: 0;}</style>
-    <script>
-let seconds = (minutes = 0), time = "00:00", tempTime;
-let paddleAIY = (paddlePlayerY = 40);
-const paddleWidth = 10, paddleHeight = 100;
-let ballX = 320;
-let ballY = 240;
-const ballSize = 5;
-let velocityX = (velocityY = 0);
-let velocityIncrement = 0;
-let scoreAI = (scorePlayer = 0);
-let speedAI = 4;
 
-window.onload = function() {
-  canvas = document.getElementById('canvas');
-  canvasContext = canvas.getContext('2d');
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Ping Pong</title>
+  <meta name="description" content="Game made only with vanilla HTML JS and CSS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  velocityX = (velocityY = canvas.width / 200);
-  velocityIncrement = canvas.width / 2800;
-
-  setInterval(update, 1000 / 30);
-  setInterval(tickTimer, 1000);
-
-  canvas.addEventListener('mousemove', function(input) {
-  paddlePlayerY = input.clientY - paddleHeight / 2;
-  });
-};
-
-function tickTimer() {
-  seconds++;
-  if (seconds == 60) {
-    seconds = 0;
-    minutes++;
-  }
-  if (seconds < 10) {
-    tempTime = '0' + seconds;
-    if (minutes < 10) {
-      time = '0' + minutes + ':' + tempTime;
-    } else {
-      time = minutes + ':' + tempTime;
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
     }
-  } else {
-    tempTime = seconds;
-    if (minutes < 10) {
-      time = '0' + minutes + ':' + tempTime;
-    } else {
-      time = minutes + ":" + tempTime;
+  </style>
+
+  <script>
+    let seconds = (minutes = 0),
+      time = "00:00",
+      tempTime;
+    let paddleAIY = (paddlePlayerY = 40);
+    const paddleWidth = 10,
+      paddleHeight = 100;
+    let ballX = 320;
+    let ballY = 240;
+    const ballSize = 5;
+    let velocityX = (velocityY = 0);
+    let velocityIncrement = 0;
+    let scoreAI = (scorePlayer = 0);
+    let speedAI = 4;
+
+    window.onload = function () {
+      canvas = document.getElementById('canvas');
+      canvasContext = canvas.getContext('2d');
+
+      velocityX = (velocityY = canvas.width / 200);
+      velocityIncrement = canvas.width / 2800;
+
+      setInterval(update, 1000 / 30);
+      setInterval(tickTimer, 1000);
+
+      canvas.addEventListener('mousemove', function (input) {
+        paddlePlayerY = input.clientY - paddleHeight / 2;
+      });
+    };
+
+    function tickTimer() {
+      seconds++;
+      if (seconds == 60) {
+        seconds = 0;
+        minutes++;
+      }
+      if (seconds < 10) {
+        tempTime = '0' + seconds;
+        if (minutes < 10) {
+          time = '0' + minutes + ':' + tempTime;
+        } else {
+          time = minutes + ':' + tempTime;
+        }
+      } else {
+        tempTime = seconds;
+        if (minutes < 10) {
+          time = '0' + minutes + ':' + tempTime;
+        } else {
+          time = minutes + ":" + tempTime;
+        }
+      }
+      if (velocityX < 0) {
+        velocityX += -velocityIncrement;
+      } else {
+        velocityX += velocityIncrement;
+      }
+      if (velocityY < 0) {
+        velocityY += -velocityIncrement;
+      } else {
+        velocityY += velocityIncrement;
+      }
+      speedAI += velocityIncrement - 0.02;
     }
-  }
-  if (velocityX < 0) {
-    velocityX += -velocityIncrement;
-  } else {
-    velocityX += velocityIncrement;
-  }
-  if (velocityY < 0) {
-    velocityY += -velocityIncrement;
-  } else {
-    velocityY += velocityIncrement;
-  }
-  speedAI += velocityIncrement - 0.02;
-}
 
-function update() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+    function update() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-  if (paddleAIY + paddleHeight / 2 < ballY) {
-    paddleAIY += speedAI;
-  } else {
-    paddleAIY -= speedAI;
-  }
+      if (paddleAIY + paddleHeight / 2 < ballY) {
+        paddleAIY += speedAI;
+      } else {
+        paddleAIY -= speedAI;
+      }
 
-  canvasContext.fillStyle = 'black';
-  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+      canvasContext.fillStyle = 'black';
+      canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
-  canvasContext.fillStyle = 'white';
-  canvasContext.font = '30px Verdana';
-  canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
-  canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
-  canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
-  canvasContext.fillText(scorePlayer, 100, 100);
-  canvasContext.fillText(scoreAI, canvas.width - 100, 100);
-  canvasContext.fillText(time, canvas.width / 2 - 35, 60);
+      canvasContext.fillStyle = 'white';
+      canvasContext.font = '30px Verdana';
+      canvasContext.fillRect(0, paddlePlayerY, paddleWidth, paddleHeight);
+      canvasContext.fillRect(canvas.width - paddleWidth, paddleAIY, paddleWidth, paddleHeight);
+      canvasContext.fillRect(ballX - ballSize / 2, ballY - ballSize / 2, ballSize, ballSize);
+      canvasContext.fillText(scorePlayer, 100, 100);
+      canvasContext.fillText(scoreAI, canvas.width - 100, 100);
+      canvasContext.fillText(time, canvas.width / 2 - 35, 60);
 
-  ballX += velocityX;
-  ballY += velocityY;
+      ballX += velocityX;
+      ballY += velocityY;
 
-  if (ballY < 0 && velocityY < 0) {
-    velocityY = -velocityY;
-  }
-  if (ballY > canvas.height && velocityY > 0) {
-    velocityY = -velocityY;
-  }
-  if (ballX < 0) {
-    if (ballY > paddlePlayerY && ballY < paddlePlayerY + paddleHeight) {
-      velocityX = -velocityX;
-      deltaY = ballY - (paddlePlayerY + paddleHeight) / 2;
-    } else {
-      scoreAI++;
-      reset();
+      if (ballY < 0 && velocityY < 0) {
+        velocityY = -velocityY;
+      }
+      if (ballY > canvas.height && velocityY > 0) {
+        velocityY = -velocityY;
+      }
+      if (ballX < 0) {
+        if (ballY > paddlePlayerY && ballY < paddlePlayerY + paddleHeight) {
+          velocityX = -velocityX;
+          deltaY = ballY - (paddlePlayerY + paddleHeight) / 2;
+        } else {
+          scoreAI++;
+          reset();
+        }
+      }
+      if (ballX >= canvas.width) {
+        if (ballY > paddleAIY && ballY < paddleAIY + paddleHeight) {
+          velocityX = -velocityX;
+          deltaY = ballY - (paddleAIY + paddleHeight) / 2;
+        } else {
+          scorePlayer++;
+          reset();
+        }
+      }
     }
-  }
-  if (ballX >= canvas.width) {
-    if (ballY > paddleAIY && ballY < paddleAIY + paddleHeight) {
-      velocityX = -velocityX;
-      deltaY = ballY - (paddleAIY + paddleHeight) / 2;
-    } else {
-      scorePlayer++;
-      reset();
+
+    function reset() {
+      ballX = canvas.width / 2;
+      ballY = canvas.height / 2;
+      if (velocityX < 0) {
+        velocityX = canvas.width / 100;
+      } else {
+        velocityX = -canvas.width / 100;
+      }
+      velocityY = 3;
+      speedAI = 3;
+
+      velocityIncrement = canvas.width / 2800;
     }
-  }
-}
+  </script>
+</head>
 
-function reset() {
-  ballX = canvas.width / 2;
-  ballY = canvas.height / 2;
-  if (velocityX < 0) {
-    velocityX = canvas.width / 100;
-  } else {
-    velocityX = -canvas.width / 100;
-  }
-  velocityY = 3;
-  speedAI = 3;
-  
-  velocityIncrement = canvas.width / 2800;
-}
+<body>
+  <canvas id="canvas" width="640" height="480"></canvas>
+</body>
 
-    </script>
-  </head>
-  <body>
-    <canvas id="canvas" width="640" height="480"></canvas>
-  </body>
 </html>
